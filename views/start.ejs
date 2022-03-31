@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/jobify.css">
+    <title>Jobify</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo"><img src="/images/logo.png" alt=""></div>
+        <ul class="nav-links">
+            <li><a onclick="openStats()" href="#">📈 Stats</a></li>
+            <li><a href="#">📗 All Jobs</a></li>
+            <li><a onclick="addInputs()" href="#">📝 Add Job</a></li>
+            <li><a onclick="displayProfile()" href="#">🛠️ Profile</a></li>
+        </ul>
+    </nav>
+    <div class="wrapper">
+        <header>
+            <div class="logaut"><a href="/logout">Logaut</a></div>
+            <div class="toggle"><img src="/images/menu.png" alt="" width="5%"></div>
+            <div class="h2">Dashboard</div>
+            <div class="btn">😎 <span id="user-name"><%=user.name%></span> ▼</div>
+        </header>
+       
+        <main></main>
+    </div>
+    <script src="/js/start.js"></script>
+</body>
+
+</html>

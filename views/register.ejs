@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/register.css">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <title>Register</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"><img src="/images/logo.png" alt=""></div>
+            <div class="h2">Register</div>
+        </header>
+        <div class="row">
+            <form action="/register/" method="post">
+                <div class="form-group">
+                    <label for="text">Name</label>
+                    <input required type="text" name="name" id="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="last">Last Name</label>
+                    <input required type="text" name="last" id="last" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="city">Location</label>
+                    <input required type="text" name="city" id="city" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input required type="email" name="email" id="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input required type="password" name="password" id="password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for=""></label>
+                    <input  type="submit" class="form-control" value="Submit" id="submit">
+            </form>
+        </div>
+        <div class="info">Already a member? <a href="/login">Login</a></div>
+    </div>
+
+</body>
+
+</html>
