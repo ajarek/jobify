@@ -273,4 +273,49 @@ function addSearchJob() {
     </div>
 </form>`
     main.appendChild(div)
+    getAllJob()
+}
+
+async function getAllJob(){
+    try {
+        const res = await fetch(`http://localhost:3000/stats`)
+        const data = await res.json()
+       const text = document.createElement('div')
+         text.classList.add('text')
+         text.innerHTML = `${data.length} Jobs Found`
+         const row = document.createElement('div')
+            row.classList.add('row')
+            main.append(text,row)
+
+        data.forEach(el=>{
+            console.log(el)
+            const div= document.createElement('div')
+            div.classList.add('job')
+            div.innerHTML = `<div class="card-header">
+            <div class="card-logo">${el.company.slice(0,1)}</div>
+            <div class="wrapp">
+                <div class="card-position">${el.position}</div>
+                <div class="card-company">${el.company}</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="wrapp">
+                <div class="card-location">🏙️ ${el.location}</div>
+                <div class="card-type">💼 ${el.type}</div>
+            </div>
+            <div class="wrapp">
+                <div class="card-date">📅 ${el.updatedAt.split('T')[0]}</div>
+                <div class="card-status">${el.status}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button id="card-edit">Edit</button>
+            <button id="card-delete">Delete</button>
+         </div>`
+            row.append(div)
+        })
+        
+    } catch (err) {
+        console.log(err)
+    }
 }
