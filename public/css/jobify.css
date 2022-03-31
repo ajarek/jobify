@@ -29,6 +29,7 @@
   --white: #fff;
   --red-light: #e28f11;
   --red-dark: #842029;
+  --red:#e5a0a5;
   --green-light: #d1e7dd;
   --green-dark: #0f5132;
 
@@ -236,6 +237,10 @@ main{
   }
   #clear{
     background: var(--grey-400);
+  }
+  #clear1{
+    background: var(--red);
+    letter-spacing: 2px;
   }
   .stats{
       width: 100%;

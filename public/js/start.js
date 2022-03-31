@@ -86,7 +86,10 @@ async function changeSubmit(e) {
     } catch (err) {
         console.log(err)
     }
+    clearProfile()
 }
+
+
 function addInputs() {
     main.innerHTML = ''
     const div= document.createElement('div')
@@ -107,11 +110,21 @@ function addInputs() {
     </div>
     <div class="form-group">
         <label for="status">Status</label>
-        <input required type="text" name="status" id="status" class="form-control">
+        <select name="status" id="status" class="form-control">
+        <option value="pending">Pending</option>
+        <option value="interview">Interviews</option>
+        <option value="declined">Declined</option>
+        </select>
+      
     </div>
     <div class="form-group">
         <label for="type">Job Type</label>
-        <input required type="text" name="type" id="type" class="form-control">
+        <select name="type" id="type" class="form-control">
+        <option value="full-time">full-time</option>
+        <option value="part-time">part-times</option>
+        <option value="internship">internship</option>
+        <option value="remote">remote</option>
+        </select>
     </div>
     <div class="form-group">
         <label for=""></label>
@@ -216,3 +229,48 @@ async function getStats(){
     }
 }
 openStats()
+
+function addSearchJob() {
+    main.innerHTML = ''
+    const div= document.createElement('div')
+    div.classList.add('profile')
+    div.innerHTML = `<form action="" method=""><span>Search Form</span>
+    <div class="form-group">
+        <label for="search">Search</label>
+        <input required type="text" name="search" id="search" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select name="status" id="status" class="form-control">
+        <option value="pending">Pending</option>
+        <option value="interview">Interviews</option>
+        <option value="declined">Declined</option>
+        </select>
+      
+    </div>
+    <div class="form-group">
+        <label for="type">Job Type</label>
+        <select name="type" id="type" class="form-control">
+        <option value="full-time">full-time</option>
+        <option value="part-time">part-times</option>
+        <option value="internship">internship</option>
+        <option value="remote">remote</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="company">Sort</label>
+        <select name="status" id="status" class="form-control">
+        <option value="latest">latest</option>
+        <option value="oldest">oldests</option>
+        <option value="a-z">a-z</option>
+        <option value="z-a">z-a</option>
+
+        </select>
+        </div>
+    <div class="form-group">
+        <label for=""></label>
+        <input onclick="clearSearch()"  type="submit" class="form-control" value="Clear Filters" id="clear1">
+    </div>
+</form>`
+    main.appendChild(div)
+}
