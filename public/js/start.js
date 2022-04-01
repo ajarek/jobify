@@ -277,6 +277,7 @@ function addSearchJob() {
 }
 
 async function getAllJob(){
+   
     try {
         const res = await fetch(`http://localhost:3000/stats`)
         const data = await res.json()
@@ -288,7 +289,6 @@ async function getAllJob(){
             main.append(text,row)
 
         data.forEach(el=>{
-            console.log(el)
             const div= document.createElement('div')
             div.classList.add('job')
             div.innerHTML = `<div class="card-header">
@@ -310,7 +310,7 @@ async function getAllJob(){
         </div>
         <div class="card-footer">
             <button id="card-edit">Edit</button>
-            <button id="card-delete">Delete</button>
+            <button data-id="${el._id}" onclick="deleteCard(event)" id="card-delete">Delete</button>
          </div>`
             row.append(div)
         })
@@ -318,4 +318,16 @@ async function getAllJob(){
     } catch (err) {
         console.log(err)
     }
+}
+async function deleteCard(e){
+    try {
+        const idb=  e.target.dataset.id
+        
+        await fetch(`http://localhost:3000/delete-job/${idb}`, {
+            method: 'DELETE',      
+       })
+    } catch (err) {
+        console.log(err)
+    }
+    location.reload()
 }

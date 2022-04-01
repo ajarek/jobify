@@ -4,13 +4,9 @@ const Job = require("../models/Job")
 
 
 
-router.get('/stats', async (req, res) => {
-    const stats = await Job.find({})
-    res.status(200).json(stats)
-})
-router.delete('stats/:id', async(req, res)=> {
+
+router.delete('/delete-job/:id', async(req, res)=> {
     const id = req.params.id
-    console.log(id)
     try{
     await Job.deleteOne({_id:id})
     res.sendStatus(204)
