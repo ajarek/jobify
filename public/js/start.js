@@ -269,7 +269,7 @@ function addSearchJob() {
         </div>
     <div class="form-group">
         <label for=""></label>
-        <input onclick="clearSearch()"  type="submit" class="form-control" value="Clear Filters" id="clear1">
+        <input onclick="searchJob()"  type="button" class="form-control" value="Search Jobs" id="clear1">
     </div>
 </form>`
     main.appendChild(div)
@@ -309,7 +309,7 @@ async function getAllJob(){
             </div>
         </div>
         <div class="card-footer">
-            <button id="card-edit">Edit</button>
+            <button data-id="${el._id}" onclick="editCard(event)"  id="card-edit">Edit</button>
             <button data-id="${el._id}" onclick="deleteCard(event)" id="card-delete">Delete</button>
          </div>`
             row.append(div)
@@ -330,4 +330,122 @@ async function deleteCard(e){
         console.log(err)
     }
     location.reload()
+}
+
+async function editCard(e){
+    main.innerHTML = ''
+    try {
+        const id=  e.target.dataset.id
+        const res = await fetch(`http://localhost:3000/edit-card/${id}`)
+
+        const data = await res.json()
+        const div= document.createElement('div')
+    div.classList.add('profile')
+    div.innerHTML = `<form action="/add-job/" method="post">
+    <input type="hidden" name="_id" value="${data._id}">
+    <div class="form-group">
+        <label for="position">Position</label>
+        <input required type="text" name="position" id="position" class="form-control" value="${data.position}">
+    </div>
+    <div class="form-group">
+        <label for="company">Company</label>
+        <input required type="text" name=" company" id="company" class="form-control" value="${data.company}">
+    </div>
+    
+    <div class="form-group">
+        <label for="location">Job Location</label>
+        <input required type="text" name="location" id="location" class="form-control" value="${data.location}">
+    </div>
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select name="status" id="status" class="form-control">
+        <option value="pending">Pending</option>
+        <option value="interview">Interviews</option>
+        <option value="declined">Declined</option>
+        </select>
+      
+    </div>
+    <div class="form-group">
+        <label for="type">Job Type</label>
+        <select name="type" id="type" class="form-control">
+        <option value="full-time">full-time</option>
+        <option value="part-time">part-times</option>
+        <option value="internship">internship</option>
+        <option value="remote">remote</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for=""></label>
+        <input onclick="saveJob(event)" type="submit" class="form-control" value="Update & Save" id="save">
+    </div>
+    
+</form>`
+    main.appendChild(div)
+        
+    } catch (err) {
+        console.log(err)
+    }
+   
+}
+async function saveJob(e){
+    e.preventDefault()
+    const id =document.querySelector('input[name="_id"]').value
+    const position = document.querySelector('#position').value
+    const company = document.querySelector('#company').value
+    const location = document.querySelector('#location').value
+    const status = document.querySelector('#status').value
+    const type = document.querySelector('#type').value
+    const data={
+        position:position,
+        company:company,
+        location:location,
+        status:status,
+        type:type
+    }
+    try {
+        await fetch(`http://localhost:3000/edit-job/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    } catch (err) {
+        console.log(err)
+    }
+    addSearchJob()
+    
+}
+function searchJob(){
+    const job = document.querySelectorAll('.job')
+    const search = document.querySelector('#search').value
+    const statusJob = document.querySelector('#status').value
+    const typeJob = document.querySelector('#type').value
+    
+         job.forEach(el=>{
+          
+                const position = el.querySelector('.card-position').innerText
+                const status = el.querySelector('.card-status').innerText
+                const type = el.querySelector('.card-type').innerText
+                const text = `${position}  ${status} ${type}`
+                if(text.toLowerCase().includes(search.toLowerCase()) && status.toLowerCase().includes(statusJob.toLowerCase()) && type.toLowerCase().includes(typeJob.toLowerCase())){
+                    el.style.display = 'block'
+                }else{
+                    el.style.display = 'none'
+                }              
+            })
+            
+            lenJob()     
+}
+
+function lenJob(){
+    const job = document.querySelectorAll('.job')
+    const len=document.querySelector('.text')
+    let arr=[]
+    job.forEach(el=>{
+        if(el.style.display === 'block'){
+            arr.push(el)
+        }
+    })
+    len.innerHTML = `${arr.length} Jobs Found` 
 }

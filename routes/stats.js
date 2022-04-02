@@ -5,7 +5,7 @@ const Job = require("../models/Job")
 
 
 router.get('/stats', async (req, res) => {
-    const stats = await Job.find({})
+    const stats = await Job.find({}).sort({ updatedAt: -1 })
     res.status(200).json(stats)
 })
 router.delete('stats/:id', async(req, res)=> {

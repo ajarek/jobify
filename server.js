@@ -27,6 +27,8 @@ app.use(require('./routes/get-user'))
 app.use(require('./routes/job'))
 app.use(require('./routes/stats'))
 app.use(require('./routes/delete'))
+app.use(require('./routes/edit-card'))
+app.use(require('./routes/edit-job'))
 
 
 

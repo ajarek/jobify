@@ -223,7 +223,7 @@ main{
     align-items: center;
     background: var(--grey-50);
   }
-  #submit1,#submit2,#clear{
+  #submit1,#submit2,#clear,#save{
     background: var(--primary-500);
     color: var(--white);
     border-radius: 4px;
@@ -240,8 +240,13 @@ main{
     background: var(--grey-400);
   }
   #clear1{
-    background: var(--red);
+    background: var(--primary-500);
     letter-spacing: 2px;
+    cursor: pointer;
+  }
+  #clear1:hover{
+    background: var(--primary-700);
+    color: var(--white);
   }
   .stats{
       width: 100%;
