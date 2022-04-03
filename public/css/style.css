@@ -118,3 +118,20 @@ main .btn{
 main .btn:hover{
   background: var(--primary-700);
 }
+@media screen and (max-width: 1060px) {
+  .right-side{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.2; 
+  }
+  .left-side{
+    width: 100%;
+  }
+  .right-side img{
+    width: 100%;
+    height: 100%;
+    
+}
+}

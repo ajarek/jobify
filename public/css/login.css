@@ -72,6 +72,7 @@ body{
   justify-content: space-between;
   align-items: flex-start;
   border-top: 5px solid var(--primary-500);
+  
 }
 header{
   width: 100%;
@@ -80,6 +81,7 @@ header{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+ 
 }
 .h2 {
   font-size: 2rem;
@@ -154,4 +156,17 @@ form{
   text-decoration: none;
   letter-spacing: 1px;
   margin-left: 0.5rem;
+}
+@media screen and (max-width: 450px){
+  body{
+    padding: 0;
+  }
+  .container{
+    width: 100vw;
+    height: 100vh;
+    border: solid;
+    padding:1rem;
+  
+  }
+
 }

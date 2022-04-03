@@ -159,3 +159,16 @@ form{
   letter-spacing: 1px;
   margin-left: 0.5rem;
 }
+@media screen and (max-width: 450px){
+  body{
+    padding: 0;
+  }
+  .container{
+    width: 100vw;
+    height: 100vh;
+    border: solid;
+    padding:1rem;
+  
+  }
+
+}
